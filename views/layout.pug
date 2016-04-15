@@ -1,0 +1,11 @@
+doctype html
+html
+    head
+        if metas
+         each meta in metas
+            meta(property=meta.property content=meta.content)
+        title=title
+        block styles
+    body
+        block content
+        block scripts

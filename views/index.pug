@@ -1,0 +1,39 @@
+extends ./layout.pug
+
+block styles
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet" href="//bootswatch.com/darkly/bootstrap.min.css")
+
+block content
+    .container
+        .jumbotron
+            .container
+                .row
+                    h1 #[span.text-success FakerTaker]
+                    h2 Fakes the meta thing and #[span.text-danger redirects] to the given url #[span.text-warning intelligently]
+                    h3 Visit the #[a.text-primary(href="https://github.com/abdulhannanali/FakerTaker") Github repo]
+                    h4 Tweet me #[a(href="https://twitter.com/computistic") @computistic]
+                    .row
+                        .fb-save(data-uri="https://fakertaker.herokuapp.com" data-size="large")
+        .row
+            form(action="" method="POST")
+                .form-group
+                    label(for="urlRedirect") #[span.text-success URL to Redirect to]
+                    input.form-control#urlRedirect(name="url" required)
+                .form-group
+                    label(for="title") Title
+                    input.form-control#title(name="title" type="text" required)
+                .form-group
+                    label(for="type") Type
+                    input.form-control#type(name="type" type="text")
+                .form-group
+                    label(for="imageLink") Image URL
+                    input.form-control#imageLink(name="imageurl" type="text")
+                .form-group
+                    label(for="description") Description
+                    textarea.form-control#description(name="description" type="text" rows="5") 
+                .form-group
+                    button.btn.btn-default(type="submit") Fake and Take!
+
+block scripts
+    include ./facebook-script.pug
