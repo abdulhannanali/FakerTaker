@@ -1,13 +1,13 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const morgan = require("morgan")
+var express = require("express")
+var mongoose = require("mongoose")
+var morgan = require("morgan")
 
-const app = express()
+var app = express()
 
-const ENV = process.env.NODE_ENV || "development"
+var ENV = process.env.NODE_ENV || "development"
 
-const PORT = process.env.PORT || 3000
-const HOST = process.env.HOST || "0.0.0.0"
+var PORT = process.env.PORT || 3000
+var HOST = process.env.HOST || "0.0.0.0"
 
 app.set("views", __dirname + "/views")
 app.set("view engine", "pug")
