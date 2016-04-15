@@ -1,0 +1,18 @@
+[
+    {
+        "property": "og:title",
+        "content": "Bla bla bla"
+    },
+    {
+        "property": "og:image",
+        "content": "https://i.imgur.com/Cfs8FKC.jpg"
+    },
+    {
+        "property": "og:description",
+        "content": "a redirector demo of shit"
+    },
+    {
+        "property": "og:type",
+        "content": "website"
+    }
+]

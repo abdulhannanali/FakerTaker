@@ -1,0 +1,22 @@
+[
+            {
+                "property": "og:title",
+                "content": "FakerTaker: Takes client to the given url while faking it using meta tags"
+            },
+            {
+                "property": "og:image",
+                "content": "http://i.imgur.com/dH6GW37.jpg"
+            },
+            {
+                "property": "og:url",
+                "content": "https://fakertaker.herokuapp.com"
+            },
+            {
+                "property": "og:type",
+                "content": "website"
+            },
+            {
+                "property": "og:description",
+                "content": "FakerTaker is a website that takes client to the url while faking the title, description and other stuff using the OpenGraph protocol meta tags! To create such a link go to the homepage!"
+            }
+]

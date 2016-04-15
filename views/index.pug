@@ -16,24 +16,45 @@ block content
                     .row
                         .fb-save(data-uri="https://fakertaker.herokuapp.com" data-size="large")
         .row
-            form(action="" method="POST")
+            form(action="/" method="POST")
+                .row
+                    h3 Basic metadata
+                    .form-group
+                        label(for="urlRedirect") #[span.text-success URL to Redirect to]
+                        input.form-control#urlRedirect(name="og:url" required)
+                    .form-group
+                        label(for="title") Title
+                        input.form-control#title(name="og:title" type="text" required)
+                    .form-group
+                        label(for="type") Type
+                        input.form-control#type(name="og:type" value="website" type="text")
+                    .form-group
+                        label(for="imageLink") Image URL
+                        input.form-control#imageLink(name="og:image" type="text")
+                    .form-group
+                        label(for="description") Description
+                        textarea.form-control#description(name="og:description" type="text" rows="5")
+                .row
+                    h3 Optional metadata
+                    .form-group
+                        label(for="audioUrl") Audio url
+                        input.form-control#audioLink(name="og:audio" type="text")
+                    .form-group
+                        label(for="mainLocale") Locale
+                        input.form-control#mainLocale(name="og:locale" type="text")
+                    .form-group
+                        label(for="siteName") Site name
+                        input.form-control#siteName(name="og:site_name" type="text")
+                    .form-group
+                        label(for="videoUrl") Video url
+                        input.form-control#videoUrl(name="og:video" type="text")
                 .form-group
-                    label(for="urlRedirect") #[span.text-success URL to Redirect to]
-                    input.form-control#urlRedirect(name="url" required)
-                .form-group
-                    label(for="title") Title
-                    input.form-control#title(name="title" type="text" required)
-                .form-group
-                    label(for="type") Type
-                    input.form-control#type(name="type" type="text")
-                .form-group
-                    label(for="imageLink") Image URL
-                    input.form-control#imageLink(name="imageurl" type="text")
-                .form-group
-                    label(for="description") Description
-                    textarea.form-control#description(name="description" type="text" rows="5") 
-                .form-group
-                    button.btn.btn-default(type="submit") Fake and Take!
+                    button.btn.btn-primary.btn-lg(type="submit") Fake and Take!
 
 block scripts
     include ./facebook-script.pug
+    script(type="text/javascript").
+        var addProps = document.getElementById("addProps")
+        addProps.on("click", function (event) {
+            
+        })

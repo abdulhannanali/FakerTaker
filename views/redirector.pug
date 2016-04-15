@@ -1,0 +1,14 @@
+extends ./layout.pug
+
+block content
+    // This tool is not for phishing or illegal stuff, just for educational purposes
+    // The code of this website is open sourced under MIT LICENSE
+    // Visit the github repository here https://github.com/abdulhannanali/FakerTaker 
+    // DISCLAIMER: THIS SYSTEM IS VULNERABLE TO ATTACKS AND SHOULD NOT BE USED
+
+block scripts
+    script(type="text/javascript").
+        var anchor = document.createElement("a")
+        anchor.href = "#{redirect_url}"
+        anchor.click()
+        
