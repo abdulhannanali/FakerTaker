@@ -44,7 +44,7 @@ app.post("/", function (req, res, next) {
     var randomId = (Math.random() * 36).toString(36).substr(2, 10)
     var metaTags = req.body
     
-    data.redirect_url = metaTags["og:url"] || ""
+    data.redirect_url = req.body["url"] || ""
     data.title = metaTags["og:title"] || ""
     
     data.metas = Object.keys(metaTags).map(function (value, index, array) {
