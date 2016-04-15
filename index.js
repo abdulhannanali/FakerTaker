@@ -48,10 +48,17 @@ app.post("/", function (req, res, next) {
     data.title = metaTags["og:title"] || ""
     
     data.metas = Object.keys(metaTags).map(function (value, index, array) {
-        return {
-            "property": value,
-            "content": metaTags[value]
+        var metaValue = req.body[value]
+        
+        if (metaValue && metaValue.trim()) {
+            return {
+                property: value,
+                content: metaValue
+            }    
         }
+        else {
+            return null
+        }    
     }).filter((value) => {return value || false})
     
     data.id = randomId
