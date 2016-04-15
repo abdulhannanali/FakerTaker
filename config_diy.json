@@ -1,0 +1,8 @@
+{
+    "nodejs": {
+        "version": "v4.4.3",
+        "removeOld": true,
+        "separateErrorLog": true,
+        "cleanNPMInstall": false
+    }
+}
