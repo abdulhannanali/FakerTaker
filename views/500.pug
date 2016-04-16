@@ -1,0 +1,23 @@
+extends ./layout.pug
+
+block styles
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet" href="//bootswatch.com/darkly/bootstrap.min.css")
+    
+block content
+    .container
+        .row
+            .jumbotron
+                .container
+                    h1 #[span.text-danger 500! ERROR!]
+                    h3 Sorry an error occured!
+                    h4 Go to the home page or try after some time
+                    h5.
+                        Access the code of this application #[a(href="https://github.com/abdulhannanali/FakerTaker") here] and maybe
+                        try fixing the problem and make a PR or just raise an issue. You can contact Hannan Ali on twitter #[a(href="https://twitter.com/computistic") @computistic]
+        if (error && env == "development")
+            h3 Error message!
+            .row
+                .well.well-lg
+                    code.
+                        #{error}

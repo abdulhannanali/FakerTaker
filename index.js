@@ -133,8 +133,7 @@ app.get("/:id", function (req, res, next) {
 app.get("/:id/page", function (req, res, next) {
     if (req.params.id && req.params.id.trim()) {
         readRedirect(req.params.id.trim(), function (error, data) {
-            if (error && error.code == "ENOENT") {
-                console.log(error)
+            if (error && (error.code == "ENOENT" || error.errno == -4058)) {
                 next()
             }
             else if (error) {
@@ -181,6 +180,20 @@ app.get("/:id/thumb", function (req, res, next) {
 })
 
 
+app.get("/404", function (req, res, next) {
+    res.status(404).render("404")
+})
+
+app.use(function (req, res, next) {
+    res.redirect("/404")
+})
+
+app.use(function (error, req, res, next) {
+    res.status(500).render("500", {
+        error: error.toString(),
+        env: "development"
+    })
+})
 
 app.listen(PORT, HOST, (error) => {
     if (!error) {
