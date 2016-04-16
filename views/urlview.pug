@@ -1,0 +1,29 @@
+extends ./layout.pug
+
+block styles
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet" href="//bootswatch.com/darkly/bootstrap.min.css")
+    
+block content
+    .container
+        .row
+            h1=msg
+            h2 Redirect URL: #[a(href="/" + id) #{path}]
+            h3 Access this page: #[a(href="/" + id + "/page") #{path}/page]
+            h3 The id for this URL is #[span.text-primary #{id}]
+            h3.text-primary #[a(href="/") Create another url]
+            .row
+                .container
+                    h5.text-warning Save redirect url to #[span.text-primary facebook]
+                    .fb-save(data-uri=path data-size="large")
+        if metas
+            .row
+                h3.text-danger Meta Tags!
+                h4 Meta tags present here!
+                .well.well-sm
+                    each meta in metas
+                            if (meta && meta.content && meta.property)
+                                p= "<meta property=\"" + meta.property +  "\" content=\"" + meta.content + "\"/>"
+
+block scripts
+    include ./facebook-script.pug

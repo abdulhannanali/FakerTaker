@@ -1,9 +1,7 @@
 doctype html
 html
     head
-        if metas
-         each meta in metas
-            meta(property=meta.property content=meta.content)
+        include ./meta.pug
         title=title
         block styles
     body

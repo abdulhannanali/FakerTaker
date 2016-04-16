@@ -3,6 +3,7 @@ var mongoose = require("mongoose")
 var morgan = require("morgan")
 var fs = require("fs")
 var mkdirp = require("mkdirp")
+var path = require("path")
 
 var bodyParser = require("body-parser")
 
@@ -16,6 +17,8 @@ var PORT = process.env.PORT || 3000
 var HOST = process.env.HOST || "0.0.0.0"
 var MONGODB_CONNECTION_URI = process.env.MONGODB_CONNECTION_URI || "mongodb://localhost/fakertakerdb"
 
+var hostname;
+
 app.set("views", __dirname + "/views")
 app.set("view engine", "pug")
 
@@ -24,10 +27,13 @@ app.use(bodyParser.urlencoded())
 mkdirp.sync("./redirectData/")
 
 if (ENV == "development") {
-    app.use(morgan("dev"))    
+    app.use(morgan("dev"))
+    hostname = "http://" + HOST + ":" + PORT + "/"    
 } else {
     app.use(morgan("combined"))
+    hostname = "http://fakertaker.herokuapp.com/"
 }
+
 
 app.get("/", function (req, res, next) {
     res.render("index", {
@@ -36,9 +42,11 @@ app.get("/", function (req, res, next) {
     })
 })
 
-var data = []
+app.get("/generate", function (req, res, next) {
+    res.redirect("/")
+})
 
-app.post("/", function (req, res, next) {
+app.post("/generate", function (req, res, next) {
     var data = {}
     
     var randomId = (Math.random() * 36).toString(36).substr(2, 10)
@@ -63,9 +71,9 @@ app.post("/", function (req, res, next) {
     
     data.id = randomId
     
-    fs.writeFile("./redirectData/" + randomId + ".json", JSON.stringify(data), function (error) {
+    fs.writeFile("./redirectData/" + randomId + ".json", JSON.stringify(data), function (error) {   
         if (!error) {
-            res.send(randomId)
+            res.redirect("/" + randomId + "/page")
         }
         else {
             next(error)
@@ -122,6 +130,52 @@ app.get("/:id", function (req, res, next) {
     }
 })
 
+app.get("/:id/page", function (req, res, next) {
+    if (req.params.id && req.params.id.trim()) {
+        readRedirect(req.params.id.trim(), function (error, data) {
+            if (error && error.code == "ENOENT") {
+                console.log(error)
+                next()
+            }
+            else if (error) {
+                next(error)
+            }
+            else {
+                res.render("urlview", {
+                    title: "URL page | " + data.id,
+                    msg: "Url page for " + data.id,
+                    id: data.id,
+                    metas: data.metas,
+                    path: hostname + data.id
+                })  
+            }
+        })
+    }
+})
+
+function readRedirect (id, cb) {
+    if (!id) {
+        cb(new Error("no id provided"))
+        return;
+    }
+    
+    var filePath = path.join("./redirectData/", id + ".json")
+    
+    fs.readFile(filePath, "utf-8", function (error, data) {
+        if (data) {
+            try {
+                var parsedData = JSON.parse(data)    
+                cb(undefined, parsedData)    
+            }
+            catch (error) {
+                cb(error)
+            }
+        }
+        else {
+            cb(error)
+        }
+    })
+}
 
 app.get("/:id/thumb", function (req, res, next) {
 })
