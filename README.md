@@ -23,7 +23,19 @@ These lines are enough to execute what we want to execute. This logic is present
 ### Objects responsible for faking it
 `<meta />` is by far the main culprit for **faking** without this tag I won't think it would be possible. The [OpenGraph](https://ogp.me) protocol made possible. This meta data is scraped by the sites. Such as property `og:image` is used for determining the image used for the site in the displaying.
 
-Twitter also uses metadata and there exists standardize properties which can do a lot. Such as `twitter:card` but these aren't implemented.
+Twitter also uses metadata and there exists standardize properties which can do a lot. Such as `twitter:card` but these aren't implemented yet by me. Although, they might me allowed in the future using pre defined labels or a large limit of custom fields can be introduced which can allow user to add any property to the site's meta data it wants to.
+
+#### Entry of metadata
+metadata is entered using the form on the home page. For now, it supports just a few properties but as the [ogp protocol](https://ogp.me) extends widely we can give user ability to customize the site's meta data more properly such as adding properties for faking an article and faking a video using video namespace. 
+
+You can access the form  on the main page.
+
+###### TODO
+There are some of the features that should be introduced
+
+- A `.form-group` for adding custom propert and content in the metadata. This can enable any type of content user want to add
+- Better support for the user adding the content
+- Better namespace grouping for popular namespaces such as `video` and `audio` 
 
 #### LICENSE
 Licensed under MIT LICENSE. See [LICENSE](LICENSE) for more details.
