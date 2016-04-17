@@ -15,7 +15,10 @@ block content
             .row
                 .container
                     h5.text-warning Save redirect url to #[span.text-primary facebook]
-                    .fb-save(data-uri=path data-size="large")
+                    .row
+                            .fb-save(data-uri=path data-size="large")
+                    .row
+                        .fb-send(data-href=path data-colorscheme="dark")
         if metas
             .row
                 h3.text-danger Meta Tags!
