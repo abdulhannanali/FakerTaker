@@ -1,4 +1,6 @@
 # FakerTaker
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/abdulhannanali/FakerTaker.svg)](https://greenkeeper.io/)
 DEMO: [https://fakertaker.herokuapp.com](https://fakertaker.herokuapp.com)
 
 FakerTaker: Takes client to the given url while faking it using meta tags
